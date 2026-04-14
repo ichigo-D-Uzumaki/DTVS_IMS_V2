@@ -3095,6 +3095,14 @@
         style.textContent = `@keyframes fadeInUp{from{opacity:0;transform:translateX(-50%) translateY(10px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}`;
         document.head.appendChild(style);
     </script>
+
+    <script>
+        fetch('/api/data')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+    </script>
 </body>
 
 </html>
