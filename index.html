@@ -1191,18 +1191,35 @@
 <body class="bg-light theme-blue">
 
     <!-- ══ LOGIN ═════════════════════════════════════════════════════════════════ -->
-    <div id="loginSection" class="container mt-5" style="max-width:400px;">
-        <div class="card p-4 shadow text-center border-0">
-            <h4 style="font-family:'Urbanist',sans-serif;font-weight:800;">⚡ DTVS Champion</h4>
-            <p class="text-muted small mb-3">Sign in to continue</p>
-            <input id="user" class="form-control mb-2" placeholder="Username">
-            <input id="pass" type="password" class="form-control mb-3" placeholder="Password">
-            <div class="form-check text-start mb-3">
-                <input class="form-check-input" type="checkbox" id="rememberMe">
-                <label class="form-check-label small text-muted" for="rememberMe">Remember me for 30 days</label>
-            </div>
-            <button onclick="login()" class="btn btn-primary w-100 fw-bold">Sign In</button>
-        </div>
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            fetch('/api/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+                .then(res => {
+                    if (res.status === 200) {
+                        alert("Login Success ✅");
+                    } else {
+                        alert("Access Denied ❌");
+                    }
+                });
+        }
+    </script>
+    <input id="username" placeholder="Username" class="form-control mb-2">
+    <input id="password" type="password" placeholder="Password" class="form-control mb-2">
+
+    <button onclick="login()" class="btn btn-primary">Login</button>
+    </div>
     </div>
 
     <!-- ══ CUSTOMISATION PANEL ════════════════════════════════════════════════════ -->
